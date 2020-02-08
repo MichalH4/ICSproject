@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_filmManagmet
 {
-    class Film
+    class Film2
     {
     }
 }
