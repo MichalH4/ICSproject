@@ -8,13 +8,14 @@ namespace Project_filmManagmet
 {
     /// <summary>
     /// This class contains user's rating of one film.
-    /// For every new film, new object from this class need to be created
+    /// For every new film rating, new object from this class need to be created
     /// </summary>
     class Ratings
     {
-        // Properties of the class
+        // Private fields of the class ( they are private by default )
         int ratingInPercents;
-        StringBuilder textRating;
+        int numberOfRatings;
+        string textRating;              // TODO: can it be rewrited in the future when it is string and not StringBiulder ???
 
         // Default constructor which sets the values to properties when new object is created
         public Ratings()                // TODO: is constructor useless here ???
@@ -26,17 +27,22 @@ namespace Project_filmManagmet
         // After clicking on "Add rating" button, new object "rating to film xx" is created and init. via constructor
         // Than user will approach exact properties via getters and setters ( can also leave some properties empty )
 
-        #region Getters and Setters
+        #region Properties
 
         // Methods for getting and setting the value of ratingInPercents
         public int RatingInPercents
         {
             get { return ratingInPercents; }
-            set { ratingInPercents = value; }
+            set
+            {
+                // When new rating is added, numberOfRatings is incremented
+                ++numberOfRatings;
+                ratingInPercents = value;
+            }
         }
 
         // Methods for getting and setting the content of textRating
-        public StringBuilder TextRating
+        public string TextRating
         {
             get { return textRating; }
             set { textRating = value; }
