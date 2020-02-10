@@ -12,16 +12,16 @@ namespace Project_filmManagmet
     /// </summary>
     enum Genre
     {
-        undefined,
-        actionFilm,
-        adventureFilm,
-        comedyFilm,
-        horrorFilm,
-        historicalFilm,
-        documentaryFilm,
-        dramaFilm,
-        scienceFilm,
-        warFilm
+        Undefined,
+        ActionFilm,
+        AdventureFilm,
+        ComedyFilm,
+        HorrorFilm,
+        HistoricalFilm,
+        DocumentaryFilm,
+        DramaFilm,
+        ScienceFilm,
+        WarFilm
     }
 
     /// <summary>
@@ -38,6 +38,11 @@ namespace Project_filmManagmet
         string countryOfOrigin;
         string description;
         object rating;                  // This reference variable will point at description which belongs to the film
+        int numberOfRatings;            // When new rating to the film is added, this variable will be incremented
+        int sumOfAllAddedRatings;       // This varaible holds sum of all added ratings in percent
+        int overallRatingInPercents;    // This variable is overall rating and is always changed when new rating to the film is added
+                                        // overallRatingInPercents = sumOfAllAddedRatings / numberOfRatigns
+                                        // e.g.: 85% = ( 80% + 90% ) / 2
 
         string[] actors;                // In this array will be stored all actors, which played in the film       
         int actors_index;               // Keep track of index in array actors
@@ -49,7 +54,7 @@ namespace Project_filmManagmet
         {
             orignalName = string.Empty;
             czechName = string.Empty;
-            genreOfFilm = Genre.undefined;
+            genreOfFilm = Genre.Undefined;
             lengthInMinutes = 0;
             countryOfOrigin = string.Empty;
             description = string.Empty;
@@ -57,6 +62,9 @@ namespace Project_filmManagmet
             actors = new string[10];                // Default length is 10 because of simplicity of code
             actors_index = 0;
             director = string.Empty;
+            numberOfRatings = 0;
+            sumOfAllAddedRatings = 0;
+            overallRatingInPercents = 0;
         }
 
         #region Properties
@@ -129,13 +137,50 @@ namespace Project_filmManagmet
             set { director = value; }
         }
 
+        // Methods for getting and setting the value of numberOfRatings
+        public int NumberOfRatings
+        {
+            get { return numberOfRatings; }
+            set { numberOfRatings = value; }
+        }
+
+        // Methods for getting and setting the value of overallRatingInPercents
+        public int OverallRatingInPercents
+        {
+            get { return overallRatingInPercents; }
+            set { overallRatingInPercents = value; }
+        }
+
+        // Methods for getting and setting the value of sumOfAllAddedRatings
+        public int SumOfAllAddedRatings
+        {
+            get { return sumOfAllAddedRatings; }
+            set { sumOfAllAddedRatings = value; }
+        }
+
         #endregion
 
-        // Method for printing out names of actors in film
+        // TODO: These functions are always created when new film is added and that is not very effective ... any improvement ???
+
+        /// <summary>
+        /// Method for printing out names of actors of chosen film
+        /// </summary>
         public void ReadActersOfFilm()
         {
             for (int i = 0; i < 3; ++i)
                 Console.WriteLine($"{i+1}. actor: {actors[i]}");
+        }
+
+        /// <summary>
+        /// Method for calculation of overall rating of the film
+        /// Useage: OverallRatingInPercents = CalculateOverallRating();
+        /// </summary>
+        /// <returns></returns>
+        public int CalculateOverallRating()
+        {
+            if (numberOfRatings == 0)
+                return 0;
+            return sumOfAllAddedRatings / numberOfRatings;
         }
 
         // TODO: write a method for reading from array actors according to index

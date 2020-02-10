@@ -6,6 +6,19 @@ using System.Threading.Tasks;
 
 namespace Project_filmManagmet
 {
+    // TODO: where to place this enum variable ???
+    /// <summary>
+    /// Enum type for determining if the person is actor or director
+    /// Default value which is assing to new person is undefined
+    /// </summary>
+    enum TypeOfPerson
+    {
+        Undefined,
+        Actor,
+        Director
+    }
+
+    // TODO: Using just one class like this ? or two classes  ? or 3 classes and inherit informations from one main class.
     /// <summary>
     /// This class contains all informations about actors and directors
     /// For every new person, new object from this class need to be created
@@ -14,6 +27,7 @@ namespace Project_filmManagmet
     class Person
     {
         // Private fields of the class ( they are private by default )
+        TypeOfPerson personsJob;
         string firstName;
         string secondName;
         int age;
@@ -29,6 +43,7 @@ namespace Project_filmManagmet
         // Default constructor which sets the values to properties when new object is created
         public Person()
         {
+            personsJob = TypeOfPerson.Undefined;
             firstName = null;
             secondName = null;
             age = 0;
@@ -39,6 +54,13 @@ namespace Project_filmManagmet
         }
 
         #region Properties
+
+        // Methods for getting and setting the content of personsJob
+        public TypeOfPerson PersonsJob
+        {
+            get { return personsJob; }
+            set { personsJob = value; }
+        }
 
         // Methods for getting and setting the content of variable firstName
         public string FirstName

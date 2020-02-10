@@ -14,7 +14,6 @@ namespace Project_filmManagmet
     {
         // Private fields of the class ( they are private by default )
         int ratingInPercents;
-        int numberOfRatings;
         string textRating;              // TODO: can it be rewrited in the future when it is string and not StringBiulder ???
 
         // Default constructor which sets the values to properties when new object is created
@@ -33,12 +32,7 @@ namespace Project_filmManagmet
         public int RatingInPercents
         {
             get { return ratingInPercents; }
-            set
-            {
-                // When new rating is added, numberOfRatings is incremented
-                ++numberOfRatings;
-                ratingInPercents = value;
-            }
+            set { ratingInPercents = value; }
         }
 
         // Methods for getting and setting the content of textRating
